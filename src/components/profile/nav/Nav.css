@@ -1,0 +1,50 @@
+.main-nav-container {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1040;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 22px;
+}
+.text-heading-design{
+  color:l #8ec5fc !important;
+}
+.advertise-btn {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.input-group-text {
+  background-color: white;
+  border-left: none;
+  cursor: pointer;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+.search-bar .form-control {
+  border-right: none;
+}
+
+.search-bar .input-group-text {
+  border-left: none;
+}
+
+@media (max-width: 767px) {
+  .main-nav-container {
+    padding-bottom: 10px;
+  }
+
+  .advertise-btn {
+    font-size: 12px;
+    padding: 2px 10px;
+  }
+}

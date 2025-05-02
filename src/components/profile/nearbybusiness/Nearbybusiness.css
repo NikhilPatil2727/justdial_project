@@ -1,0 +1,93 @@
+.nearby-title {
+  font-size: 5vw;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .nearby-title {
+    font-size: 28px;
+  }
+}
+
+.nearby-card {
+  min-width: 240px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.nearby-card:hover {
+  transform: translateY(-5px);
+}
+
+.nearby-image {
+  height: 160px;
+  object-fit: cover;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+  background: #0056b3;
+}
+
+.scroll-btn.left {
+  left: -40px;
+}
+
+.scroll-btn.right {
+  right: -40px;
+}
+
+@media (max-width: 768px) {
+  .nearby-card {
+    min-width: 200px;
+  }
+
+  .nearby-title-text {
+    font-size: 15px;
+  }
+
+  .nearby-button {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .scroll-btn.left,
+  .scroll-btn.right {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nearby-title {
+    font-size: 6vw;
+  }
+
+  .nearby-card {
+    min-width: 180px;
+  }
+
+  .nearby-image {
+    height: 140px;
+  }
+
+  .nearby-button {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+}

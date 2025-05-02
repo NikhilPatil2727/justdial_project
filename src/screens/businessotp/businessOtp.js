@@ -1,0 +1,25 @@
+import '../../assets/profile/css/bootstrap.min.css';
+import '../../assets/profile/css/simple-line-icons.css';
+import '../../assets/profile/css/themify-icons.css';
+import "../../assets/profile/css/style.css"; 
+import "../../assets/profile/css/set1.css";
+
+
+import BusinessOTPVerification from '../../components/profile/otp/Otp';
+
+function BusinessOtpScreen() {
+  return (
+    <>
+     
+         <BusinessOTPVerification />
+        
+
+
+
+        
+       
+    </>
+  );
+}
+
+export default BusinessOtpScreen;
