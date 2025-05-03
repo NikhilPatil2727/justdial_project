@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchLabtest } from './Service';
 import { WEB_API } from "../../../common/constant";
 import { useParams } from 'react-router-dom';
+import project1 from '../../../assets/website/img/service-1.jpg';
 
 const Labtest = () => {
     const [data, setData] = useState([]);
@@ -36,18 +37,18 @@ const Labtest = () => {
             <div className="container-fluid project py-5">
                 <div className="container py-5">
                     <div className="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style={{ maxWidth: '800px' }}>
-                        <h2 className="display-4 text-capitalize mb-3">Lab Tests</h2>
+                        <h2 className="display-4 text-capitalize mb-3"style={{color:"#000000"}}>Lab Tests</h2>
                     </div>
                     <div className="row g-5">
                         {data.length > 0 ? (
                             data.map((test, index) => (
-                                <div className="col-lg-6 wow fadeInUp" data-wow-delay={`${0.2 + index * 0.2}s`} key={test._id}>
+                                <div className="col-lg-4 wow fadeInUp" data-wow-delay={`${0.2 + index * 0.2}s`} key={test._id}>
                                     <div className="project-item">
                                         <div className="row g-4">
                                             <div className="col-md-4">
                                                 <div className="project-img">
                                                     <img
-                                                        src={`${WEB_API}${test.lt_img}`}
+                                                        src={project1}
                                                         className="img-fluid pt-3 ps-3"
                                                         alt={test.lt_name}
                                                         style={{ width: '300px', height: '200px', objectFit: 'cover' }}

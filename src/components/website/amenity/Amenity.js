@@ -32,7 +32,7 @@ const Amenity = () => {
     return (
         <div style={{ backgroundColor: "#f4f4f4", padding: "40px 0",marginTop:"100px" }} className="amenity-section">
         <div className="text-center mx-auto pb-5" style={{ maxWidth: "800px" }}>
-            <h2 className="display-4 text-capitalize mb-3">Our Amenities</h2>
+            <h2 className="display-4 text-capitalize mb-3"style={{color:"#000000"}}>Our Amenities</h2>
         </div>
         <div style={{ display: "flex",justifyContent: "center",alignItems: "center", gap: "20px", flexWrap: "wrap", paddingLeft: "100px", paddingRight: "100px" }}>
             {Array.isArray(data) && data.length ? (

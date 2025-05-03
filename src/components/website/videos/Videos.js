@@ -36,7 +36,7 @@ const Videos = () => {
   };
 
   const openModal = (videoPath) => {
-    const fullVideoPath = `http://localhost:3001${videoPath}`;
+    const fullVideoPath =` http://localhost:3001${videoPath}`;
     setVideoUrl(fullVideoPath);
     setShowModal(true);
   };
@@ -51,64 +51,100 @@ const Videos = () => {
 
   return (
     <div className="container py-5 mb-5">
-  <h2 className="text-center mb-5 bold">Business Videos</h2>
-
-  {loading ? (
-    <p className="text-center">Loading videos...</p>
-  ) : error ? (
-    <p className="text-danger text-center">{error}</p>
-  ) : (
-    <div className="row">
-      {videos.map((video, index) => (
-        <div key={index} className="col-md-6 col-lg-4 col-xl-3 mb-4">
-          <div className="card shadow-sm border-0" style={{ cursor: "pointer" }}>
-            <div className="position-relative">
-              <img
-                src={Image4}
-                className="card-img-top"
-                alt="Business Video"
-                style={{ height: "200px", objectFit: "cover",marginTop:"10px" }}
-                onClick={() => openModal(video.vd_path)}
-              />
-              <button
-                className="position-absolute start-50 translate-middle btn btn-dark rounded-circle"
-                style={{ width: "60px", height: "60px", fontSize: "24px", top:"75px"}}
-                onClick={() => openModal(video.vd_path)}
-              >
-                <i className="fa fa-play"></i>
-              </button>
+    <h2 className="text-center mb-5 fw-bold text-black">Business Videos</h2>
+  
+    <style>
+      {`
+        .video-card {
+          color: white;
+          height: 210px;
+          overflow: hidden;
+          margin-bottom: 10px;
+          transition: transform 0.3s ease;
+          border-radius:50px;
+        }
+  
+        .video-card:hover {
+          transform: translateY(-5px);
+        }
+  
+        .video-img {
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+          margin-top: 0px;
+          border-radius: 8px;
+        }
+  
+        .play-btn {
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+          transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+  
+        .play-btn:hover {
+          transform: scale(1.1);
+          background-color:rgb(113, 95, 195);
+        }
+      `}
+    </style>
+  
+    {loading ? (
+      <p className="text-center text-white">Loading videos...</p>
+    ) : error ? (
+      <p className="text-danger text-center">{error}</p>
+    ) : (
+      <div className="row">
+        {videos.map((video, index) => (
+          <div key={index} className="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <div className="card shadow-sm border-0 video-card" style={{ cursor: "pointer" }}>
+              <div className="position-relative">
+                <img
+                  src={Image4}
+                  className="video-img"
+                  alt="Business Video"
+                  onClick={() => openModal(video.vd_path)}
+                />
+                <button
+                  className="position-absolute start-50 translate-middle btn btn-dark rounded-circle play-btn"
+                  style={{ top: "55%" }}
+                  onClick={() => openModal(video.vd_path)}
+                >
+                  <i className="fa fa-play text-white"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  
+    {showModal && (
+      <div
+        className="modal fade show d-block"
+        tabIndex="-1"
+        role="dialog"
+        style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
+      >
+        <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div className="modal-content bg-dark text-white">
+            <div className="modal-header">
+              <h5 className="modal-title">Business Video</h5>
+              <button type="button" className="btn-close btn-close-white" onClick={closeModal}></button>
+            </div>
+            <div className="modal-body p-0">
+              <video width="100%" height="auto" controls>
+                <source src={videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
-      ))}
-    </div>
-  )}
-
-  {showModal && (
-    <div
-      className="modal fade show d-block"
-      tabIndex="-1"
-      role="dialog"
-      style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
-    >
-      <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Business Video</h5>
-            <button type="button" className="btn-close" onClick={closeModal}></button>
-          </div>
-          <div className="modal-body p-0">
-            <video width="100%" height="auto" controls>
-              <source src={videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
       </div>
-    </div>
-  )}
-</div>
-
+    )}
+  </div>
+  
   );
 };
 

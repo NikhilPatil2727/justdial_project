@@ -31,7 +31,7 @@ const Photos = () => {
     return (
         <div className="container py-5">
             <div className="text-center mb-5">
-                <h2 className="display-4 text-capitalize">Gallery</h2>
+                <h2 className="display-4 text-capitalize"style={{color:"#000000"}}>Gallery</h2>
             </div>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                 {data.map((photo) => (
