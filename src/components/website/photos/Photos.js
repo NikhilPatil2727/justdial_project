@@ -29,35 +29,35 @@ const Photos = () => {
     }
 
     return (
-        <div className="container-fluid team pb-5">
-            <div className="container pb-5">
-                <div className="text-center mx-auto pb-5" style={{ maxWidth: '800px' }}>
-                    <h2 className="display-4 text-capitalize mb-3">Gallery</h2>
-                </div>
-                <div className="row g-4">
-                    {data.length > 0 ? (
-                        data.map((photo, index) => (
-                            <div className="col-lg-3" key={photo._id}>
-                                <div className="team-item border border-primary p-1">
-                                    <div className="team-img">
-                                        <img
-                                            src={`${WEB_API}${photo.ph_path}`}
-                                            className="img-fluid w-100"
-                                            alt="Gallery Image"
-                                            style={{ height: '300px', objectFit: 'cover' }}
-                                        />
-                                    </div>
-
-                                </div>
+        <div className="container py-5">
+            <div className="text-center mb-5">
+                <h2 className="display-4 text-capitalize">Gallery</h2>
+            </div>
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                {data.map((photo) => (
+                    <div className="col" key={photo._id}>
+                        <div className="card border-0 shadow-sm h-100">
+                            <div className="overflow-hidden rounded">
+                                <img
+                                    src={`${WEB_API}${photo.ph_path}`}
+                                    className="img-fluid w-100"
+                                    alt="Gallery Image"
+                                    style={{
+                                        height: "250px",
+                                        objectFit: "cover",
+                                        transition: "transform 0.3s ease",
+                                    }}
+                                    onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+                                    onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                                />
                             </div>
-                        ))
-                    ) : (
-                        <p className="text-center">Loading photos...</p>
-                    )}
-                </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
+    
 };
 
 export default Photos;

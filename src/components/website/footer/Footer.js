@@ -92,102 +92,122 @@ const Footer = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
-            <div className="container py-5">
-                <div className="row g-5">
-                    {/* Business Details Section */}
-                    <div className="col-lg-4">
-                        <div className="footer-item d-flex flex-column">
-                            <h4 className="text-white mb-4">{data?.bs_business_name || "Default Title"}</h4>
-                            <p className="mb-4 fs-5">
-                                {data?.bs_desc || "Default Description"}
+        <>
+            <style>
+                {`
+                    .footer-container {
+                        background-color: #1e1e2f;
+                        color: #ffffff;
+                        padding-top: 3rem;
+                        padding-bottom: 3rem;
+                    }
+                    .footer-title {
+                        color:#a08dff;
+                        font-weight: bold;
+                        margin-bottom: 1rem;
+                    }
+                    .footer-link {
+                        color: #ffffff;
+                        text-decoration: none;
+                        display: inline-block;
+                        margin-bottom: 0.5rem;
+                        transition: color 0.3s ease-in-out;
+                    }
+                    .footer-link:hover {
+                        color:#a08dff;
+                    }
+                    .footer-icon {
+                        color: #ffffff;
+                        transition: background-color 0.3s, color 0.3s;
+                        border: 1px solid#a08dff;
+                    }
+                    .footer-icon:hover {
+                        background-color:hsl(250, 100.00%, 77.60%);
+                        color: #ffffff;
+                    }
+                    .footer-divider {
+                        border-top: 1px solid #444;
+                        margin-top: 2rem;
+                        padding-top: 1rem;
+                        color: #aaa;
+                    }
+                `}
+            </style>
+
+            <div className="container-fluid footer-container">
+                <div className="container">
+                    <div className="row g-5">
+                        {/* Business Details */}
+                        <div className="col-lg-4">
+                            <h4 className="footer-title">Digital Solutions Co.</h4>
+                            <p>
+                                We provide innovative and reliable tech solutions for startups and enterprises. Empowering digital growth.
                             </p>
                         </div>
-                    </div>
 
-                    {/* Quick Links Section */}
-                    <div className="col-lg-4">
-                        <div className="footer-item d-flex flex-column">
-                            <h4 className="text-white mb-4">Quick Links</h4>
-                            <a href="#"><i className="fas fa-angle-right me-2"></i> Home</a>
-                            <a href="#"><i className="fas fa-angle-right me-2"></i> Services</a>
-                            <a href="#"><i className="fas fa-angle-right me-2"></i> About Us</a>
-                            <a href="#"><i className="fas fa-angle-right me-2"></i> Products</a>
-                            <a href="#"><i className="fas fa-angle-right me-2"></i> Reviews</a>
-                            <a href="#"><i className="fas fa-angle-right me-2"></i> Contact Us</a>
+                        {/* Quick Links */}
+                        <div className="col-lg-4">
+                            <h4 className="footer-title">Quick Links</h4>
+                            <div className="d-flex flex-column">
+                                {["Home", "Services", "About Us", "Products", "Reviews", "Contact Us"].map((item, index) => (
+                                    <a key={index} href="#" className="footer-link">
+                                        <i className="fas fa-angle-right me-2"></i>{item}
+                                    </a>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Contact Information Section */}
-                    <div className="col-lg-4">
-                        <div className="footer-item d-flex flex-column">
-                            <h4 className="text-white mb-4">Contact Info</h4>
-                            <a href="#">
-                                <i className="fa fa-user me-2"></i>
-                                {contactInfo.bs_business_name || "No Name Provided"}
-                            </a>
-                            <a href="#">
-                                <i className="fas fa-envelope me-2"></i>
-                                {contactInfo.bs_email || "No Email Provided"}
-                            </a>
-                            <a href="#">
-                                <i className="fas fa-phone me-2"></i>
-                                {contactInfo.bs_business_phone || "No Phone Provided"}
-                            </a>
-                            <a href="#">
-                                <i className="fas fa-map-marker-alt me-2"></i>
-                                {contactInfo.bs_address || "No Address Provided"} 
-                            </a>
+                        {/* Contact Info */}
+                        <div className="col-lg-4">
+                            <h4 className="footer-title">Contact Info</h4>
+                            <ul className="list-unstyled">
+                                <li className="mb-2">
+                                    <i className="fa fa-user me-2" style={{ color: "#a08dff" }}></i>
+                                    Digital Solutions Co.
+                                </li>
+                                <li className="mb-2">
+                                    <i className="fas fa-envelope me-2" style={{ color: "#a08dff" }}></i>
+                                    hello@digitalsolutions.com
+                                </li>
+                                <li className="mb-2">
+                                    <i className="fas fa-phone me-2" style={{ color: "#a08dff" }}></i>
+                                    +91 9876543210
+                                </li>
+                                <li className="mb-2">
+                                    <i className="fas fa-map-marker-alt me-2" style={{ color: "#a08dff" }}></i>
+                                    101 Tech Lane, Sector 12, Bengaluru, Karnataka
+                                </li>
+                            </ul>
 
-                            {/* Social Media Links Section */}
-                            <div className="footer-btn d-flex align-items-center">
-                                {facebook && (
-                                    <a
-                                        className="btn btn-secondary btn-md-square me-2"
-                                        href={facebook}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <i className="fab fa-facebook-f text-white"></i>
-                                    </a>
-                                )}
-                                {twitter && (
-                                    <a
-                                        className="btn btn-secondary btn-md-square me-2"
-                                        href={twitter}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <i className="fab fa-twitter text-white"></i>
-                                    </a>
-                                )}
-                                {instagram && (
-                                    <a
-                                        className="btn btn-secondary btn-md-square me-2"
-                                        href={instagram}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <i className="fab fa-instagram text-white"></i>
-                                    </a>
-                                )}
-                                {linkedin && (
-                                    <a
-                                        className="btn btn-secondary btn-md-square me-0"
-                                        href={linkedin}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <i className="fab fa-linkedin-in text-white"></i>
-                                    </a>
-                                )}
+                            {/* Social Media Icons */}
+                            <div className="d-flex mt-3">
+                                <a className="btn btn-md footer-icon me-2 rounded-circle" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i className="fab fa-facebook-f"></i>
+                                </a>
+                                <a className="btn btn-md footer-icon me-2 rounded-circle" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i className="fab fa-twitter"></i>
+                                </a>
+                                <a className="btn btn-md footer-icon me-2 rounded-circle" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i className="fab fa-instagram"></i>
+                                </a>
+                                <a className="btn btn-md footer-icon me-0 rounded-circle" href="#" target="_blank" rel="noopener noreferrer">
+                                    <i className="fab fa-linkedin-in"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
+
+                    {/* Footer Bottom */}
+                    <div className="text-center footer-divider mt-4">
+                        <p className="mb-0">
+                            © 2025 <span style={{ color: "#a08dff" }}>Digital Solutions Co.</span> All rights reserved.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
+
 
 export default Footer;

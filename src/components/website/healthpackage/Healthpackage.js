@@ -1,8 +1,6 @@
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchHealthpackage } from "./Service";
-import { WEB_API } from "../../../common/constant";
 
 const Healthpackage = () => {
   const [data, setData] = useState([]);
@@ -10,13 +8,12 @@ const Healthpackage = () => {
 
   const fetchHealthpackageData = async () => {
     try {
-        const response = await fetchHealthpackage(bs_id);
-        setData(response.data); 
+      const response = await fetchHealthpackage(bs_id);
+      setData(response.data);
     } catch (err) {
-        console.error("Error fetching health packages:", err);
+      console.error("Error fetching health packages:", err);
     }
-};
-
+  };
 
   useEffect(() => {
     if (bs_id) {
@@ -26,42 +23,136 @@ const Healthpackage = () => {
 
   if (data.length === 0) {
     return null;
-}
+  }
 
   return (
-    <div className="container-fluid feature bg-light py-5">
+    <div className="container-fluid py-5" style={{ background: '#f8f9fa' }}>
       <div className="container py-5">
-        <div className="text-center mx-auto pb-5" style={{ maxWidth: "800px" }}>
-          <h2 className="display-4 text-capitalize mb-3">Our Health Packages</h2>
+        <div className="text-center mb-5">
+          <h2 className="display-5 fw-bold mb-3" style={{ color: '#000000' }}>
+            Our Health Packages
+          </h2>
+          <p className="text-muted">Comprehensive healthcare solutions tailored for you</p>
         </div>
+        
         <div className="row g-4">
           {data.length > 0 ? (
             data.map((packageItem) => (
-              <div key={packageItem._id} className="col-lg-4">
-                <div className="feature-item text-center border p-5 shadow-sm rounded h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div
-                      className="feature-img bg-secondary text-white d-inline-flex align-items-center justify-content-center p-4 rounded-circle mb-4"
+              <div key={packageItem._id} className="col-12 col-md-6 col-lg-4">
+                <div 
+                  className="card h-100 border-0 shadow-hover transition-all"
+                  style={{
+                    borderRadius: '15px',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div className="card-body p-4">
+                    <div 
+                      className="icon-wrapper mx-auto mb-4"
+                      style={{
+                        width: '80px',
+                        height: '80px',
+                        background: '#7562d8',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'all 0.3s ease'
+                      }}
                     >
-                      <i className="fas fa-heartbeat fa-3x"></i>
+                      <i 
+                        className="fas fa-heartbeat fa-2x text-white"
+                        style={{ transition: 'all 0.3s ease' }}
+                      ></i>
                     </div>
-                    <div className="justify-content-between mb-3">
-                      <h4 className="mb-0 text-secondary">{packageItem.hpck_name}</h4>
+                    
+                    <h3 
+                      className="text-center mb-3 fw-bold"
+                      style={{ color: '#000000' }}
+                    >
+                      {packageItem.hpck_name}
+                    </h3>
+                    
+                    <div className="price-tag text-center mb-4">
+                      <span 
+                        className="badge rounded-pill px-4 py-2"
+                        style={{ 
+                          background: '#7562d8',
+                          color: 'white',
+                          fontSize: '1.2rem'
+                        }}
+                      >
+                        ₹{packageItem.hpck_price}
+                      </span>
                     </div>
-                    <span className="btn btn-primary py-2 px-4">₹{packageItem.hpck_price}</span>
-                    <p className="text-muted mt-3">{packageItem.hpck_desc}</p>
+                    
+                    <p 
+                      className="text-center text-muted mb-0"
+                      style={{ lineHeight: '1.6' }}
+                    >
+                      {packageItem.hpck_desc}
+                    </p>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p className="text-center">Loading Healthpackages..</p>
+            <div className="col-12 text-center py-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <p className="mt-3 text-muted">Loading Health Packages...</p>
+            </div>
           )}
         </div>
       </div>
+
+      <style>
+        {`
+          .shadow-hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+          }
+          
+          .transition-all {
+            transition: all 0.3s ease;
+          }
+          
+          .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(117,98,216,0.15);
+          }
+          
+          .card:hover .icon-wrapper {
+            transform: scale(1.1);
+            background: #6351d0;
+          }
+          
+          .card:hover .fa-heartbeat {
+            transform: scale(1.1);
+          }
+          
+          .price-tag .badge {
+            transition: all 0.3s ease;
+          }
+          
+          .card:hover .price-tag .badge {
+            background: #6351d0 !important;
+          }
+          
+          @media (max-width: 768px) {
+            .card {
+              margin-bottom: 1.5rem;
+            }
+            
+            .display-5 {
+              font-size: 2.5rem;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
 
 export default Healthpackage;
-

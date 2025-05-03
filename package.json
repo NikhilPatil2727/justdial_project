@@ -10,6 +10,7 @@
     "cra-template": "1.2.0",
     "feather-icons": "^4.29.2",
     "framer-motion": "^12.7.4",
+    "lucide-react": "^0.507.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",

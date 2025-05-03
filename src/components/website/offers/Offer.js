@@ -14,8 +14,6 @@ function OfferSection() {
       try {
         if (bs_id) {
           const response = await fetchOffers(bs_id); 
-          console.log("Fetched Data:", response);
-
           const formattedOffers = response.map((offer) => ({
             offer_title: offer.offer_title || "No Title",
             offer_description: offer.offer_description || "No Description",
@@ -25,11 +23,9 @@ function OfferSection() {
             offer_end_date: offer.offer_end_date || new Date().toISOString(),
             bs_id: offer.bs_id || "N/A",
           }));
-
           setOffers(formattedOffers);
         }
       } catch (err) {
-        console.error("Error fetching offers:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -39,85 +35,81 @@ function OfferSection() {
     fetchOfferData();
   }, [bs_id]);
 
-  if (loading) {
-    return <p className="text-center"></p>;
-  }
-
-  if (error) {
-    return <p className="text-center text-danger">Error: {error}</p>;
-  }
-
-  if (offers.length === 0) {
-    return null;
-}
+  if (loading) return <p className="text-center"></p>;
+  if (error) return <p className="text-center text-danger">Error: {error}</p>;
+  if (offers.length === 0) return null;
 
   return (
-    <section className="container">
-      <div className="text-center mx-auto pb-5" style={{ maxWidth: "800px" }}>
-        <h2 className="display-4 text-capitalize mb-3">Offers</h2>
+    <section className="container py-5">
+      <div className="text-center mb-5">
+        <h2 className="display-4 text-capitalize mb-3" style={{ color: '#000000' }}>Offers</h2>
       </div>
-      <div
-        className="offer-list"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "15px",
-          justifyContent: "center",
-        }}
-      >
-        {offers.length > 0 ? (
-          offers.map((offer, index) => (
-            <div
-              key={index}
-              className="offer-card"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "250px",
-                height: "400px",
-                padding: "15px",
-                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", 
-                borderRadius: "10px",
-                textAlign: "center",
-                overflow: "hidden", 
-                backgroundColor: "#fff",
-                position: "relative",
-              }}
-            >
-              <img
-                src={Image1}
-                alt={offer.offer_title}
-                style={{
-                  width: "100%",
-                  height: "150px", 
-                  objectFit: "cover", 
-                  borderRadius: "10px 10px 0 0",
-                }}
-              />
-              <div style={{ padding: "10px", flex: 1 }}>
-                <h4 style={{ marginBottom: "5px", fontSize: "18px" }}>{offer.offer_title}</h4>
-                <p style={{ marginBottom: "5px", fontSize: "14px", color: "#777" }}>
-                  {offer.offer_description}
-                </p>
-                <p style={{ fontWeight: "bold", fontSize: "14px" }}>
-                  <strong>Code:</strong> {offer.offer_code}
-                </p>
-                <p style={{ fontSize: "14px" }}>
-                  <strong>Valid From:</strong> {new Date(offer.offer_start_date).toLocaleDateString()}
-                </p>
-                <p style={{ fontSize: "14px" }}>
-                  <strong>Valid Till:</strong> {new Date(offer.offer_end_date).toLocaleDateString()}
-                </p>
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
+        {offers.map((offer, index) => (
+          <div className="col" key={index}>
+            <div className="offer-card-custom card h-100 border-0 shadow-md">
+              <div className="card-img-top offer-img-wrapper">
+                <img
+                  src={Image1}
+                  alt={offer.offer_title}
+                  className="offer-img"
+                />
+              </div>
+              <div className="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <h5 className="card-title text-capitalize" style={{ color: '#7562d8',fontSize:'2rem' }}>{offer.offer_title}</h5>
+                  <p className="card-text text-muted" style={{ minHeight: '40px' }}>
+                    {offer.offer_description}
+                  </p>
+                </div>
+                <div>
+                  <p className="mb-1"style={{fontSize:'1rem' }}><strong>Code:</strong> <span style={{ color: '#7562d8' }}>{offer.offer_code}</span></p>
+                  <p className="mb-1"style={{fontSize:'1rem' }}><strong>Valid From:</strong> {new Date(offer.offer_start_date).toLocaleDateString()}</p>
+                  <p className="mb-0"style={{fontSize:'1rem' }}><strong>Valid Till:</strong> {new Date(offer.offer_end_date).toLocaleDateString()}</p>
+                </div>
               </div>
             </div>
-          ))
-        ) : (
-          <p className="text-center">No offers available.</p>
-        )}
+          </div>
+        ))}
       </div>
+
+      {/* Embedded CSS */}
+      <style>{`
+        .offer-card-custom {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          height: 0px;
+          border-radius: 12px;
+        }
+
+        .offer-card-custom:hover {
+          transform: scale(1.03);
+          box-shadow: 0 8px 20px rgba(117, 98, 216, 0.2);
+        }
+
+        .offer-img-wrapper {
+          position: relative;
+          height: 200px;
+         
+          overflow: hidden;
+          background: transparent;
+          border-top-left-radius: 12px;
+          border-top-right-radius: 12px;
+        }
+
+        .offer-img {
+          height: 100%;
+          width: 56%;
+          margin-top:2rem;
+         margin-left:5rem;
+          object-fit: cover;
+          transition: transform 0.4s ease-in-out;
+          animation: none;
+        }
+
+        .offer-card-custom:hover .offer-img {
+          transform: scale(1.05) rotate(-1deg);
+        }
+      `}</style>
     </section>
   );
 }
