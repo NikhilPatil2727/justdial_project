@@ -104,10 +104,13 @@
 
 
 
+// 
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Profilenav from "../../profile/profilenav/Profilenav";
 import { registerUser } from "./Service";
+import sign from "../../../assets/profile/images/download.jpg";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -167,170 +170,107 @@ const Registration = () => {
     }
   };
 
-  const styles = {
-    container: {
-      height: '750px',
-      width: '500px',
-      boxShadow: '0px 15px 30px rgb(22, 22, 22)',
-      position: 'absolute',
-      top: '50%',
-      marginTop: '145px',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      overflow: 'hidden',
-      borderRadius: '20px',
-      background: 'linear-gradient(to right top, purple, rgb(187, 7, 142))',
-    },
-    circleTop: {
-      height: '300px',
-      width: '395px',
-      borderRadius: '50%',
-      backgroundColor: 'white',
-      boxShadow: 'inset 0px 15px 25px rgb(104, 102, 102), 0px 5px 15px rgb(114, 113, 113)',
-      marginTop: '-120px',
-      marginLeft: '-50px',
-    },
-    circleBottom: {
-      height: '216px',
-      width: '465px',
-      borderRadius: '50%',
-      backgroundColor: 'white',
-      marginTop: '250px',
-      marginLeft: '200px',
-      boxShadow: 'inset 0px 5px 15px rgb(90, 89, 89), 0px 5px 15px rgb(77, 75, 75)',
-    },
-    content: {
-      height: '620px',
-      width: '380px',
-      float: 'right',
-      marginTop: '-90px',
-      marginRight: '0px',
-      borderTopLeftRadius: '20px',
-      borderBottomLeftRadius: '20px',
-      background: 'linear-gradient(to right top, rgb(236, 23, 190), rgb(4, 238, 187))',
-      boxShadow: '0px 5px 15px rgb(22, 21, 21)',
-      color: 'white',
-    },
-    heading: {
-      marginLeft: '10px',
-      padding: '20px',
-      paddingBottom: '30px',
-      marginTop: '25px',
-      fontWeight: 'lighter',
-    },
-    formGroup: {
-      marginLeft: '30px',
-      marginBottom: '10px',
-    },
-    input: {
-      width: '90%',
-      borderRadius: '5px',
-      border: 'none',
-      marginTop: '5px',
-      padding: '8px',
-      backgroundColor: 'rgba(221, 235, 240, 0.4)',
-      color: 'rgb(145, 32, 145)',
-    },
-    errorText: {
-      color: 'yellow',
-      fontSize: '12px',
-      marginTop: '4px',
-    },
-    button: {
-      marginLeft: '100px',
-      marginTop: '2px',
-      padding: '10px 60px',
-      border: 'none',
-      borderRadius: '20px',
-      backgroundColor: 'white',
-      boxShadow: '0px 5px 10px grey',
-      cursor: 'pointer',
-      color: 'purple',
-      fontSize: 'large',
-    },
-  };
-
   return (
     <>
       <Profilenav />
-      <div style={styles.container}>
-        <div style={styles.circleTop}></div>
-        <div style={styles.content}>
-          <h1 style={styles.heading}>Register</h1>
-          <form onSubmit={handleSubmit}>
-            <div style={styles.formGroup}>
-              <label htmlFor="name">Full Name</label><br />
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                style={styles.input}
-                required
-              />
-            </div>
 
-            <div style={styles.formGroup}>
-              <label htmlFor="phone">Phone Number</label><br />
-              <input
-                type="tel"
-                id="phone"
-                maxLength={10}
-                value={formData.phone}
-                onChange={handleChange}
-                style={styles.input}
-                required
-              />
-              {errors.phone && <div style={styles.errorText}>{errors.phone}</div>}
-            </div>
+      <div className="mt-4" style={{ minHeight: "100vh"}}>
+  <div className="container d-flex align-items-center justify-content-center vh-100">
+    <div className="row g-5" style={{ maxWidth: "900px", width: "100%" }}>
 
-            <div style={styles.formGroup}>
-              <label htmlFor="email">Email</label><br />
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                style={styles.input}
-                required
-              />
-            </div>
-
-            <div style={styles.formGroup}>
-              <label htmlFor="password">Password</label><br />
-              <input
-                type="password"
-                id="password"
-                value={formData.password}
-                onChange={handleChange}
-                style={styles.input}
-                required
-              />
-              {errors.password && <div style={styles.errorText}>{errors.password}</div>}
-            </div>
-
-            <div style={styles.formGroup}>
-              <label htmlFor="confirmPassword">Confirm Password</label><br />
-              <input
-                type="password"
-                id="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                style={styles.input}
-                required
-              />
-              {errors.confirmPassword && (
-                <div style={styles.errorText}>{errors.confirmPassword}</div>
-              )}
-            </div>
-
-            <button type="submit" style={styles.button}>
-              Register
-            </button>
-          </form>
-        </div>
-        <div style={styles.circleBottom}></div>
+      {/* Left Image Section */}
+      <div className="col-md-5 d-flex align-items-center justify-content-center p-4">
+        <img
+          src={sign}
+          alt="Register"
+          className="img-fluid"
+          style={{ height:"600px",maxHeight: "2000px" }}
+        />
       </div>
+
+      {/* Right Form Section with Right Shadow */}
+      <div
+        className="col-md-7 p-4 bg-light rounded"
+        style={{ boxShadow: "5px 0 15px rgba(0,0,0,0.2)" }}
+      >
+         <div>              
+                <h2 className="text-center mb-4"  style={{backgroundColor:"#a071fd", color:"white", fontSize:"3rem"}}>Register</h2>
+              </div><br></br>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">Full Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">Phone Number</label>
+            <input
+              type="tel"
+              className="form-control"
+              id="phone"
+              maxLength={10}
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+            {errors.phone && <div className="text-danger small">{errors.phone}</div>}
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            {errors.password && <div className="text-danger small">{errors.password}</div>}
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+            {errors.confirmPassword && <div className="text-danger small">{errors.confirmPassword}</div>}
+          </div>
+
+          <div className="d-flex justify-content-center mt-3">
+    <button type="submit" className="btn w-50" style={{backgroundColor:"#a071fd"}}>Register</button>
+  </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
     </>
   );
 };
